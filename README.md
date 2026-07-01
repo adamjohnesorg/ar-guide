@@ -1,32 +1,46 @@
-# React + TypeScript + Vite
+# Active Reports Guide
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A simple internal guide site for documenting common Active Reports Report Designer topics. The goal is to keep the guide easy to read, easy to update.
 
-Currently, two official plugins are available:
+The site is built with React, TypeScript, Vite, Tailwind, and React Router.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Adding a new chapter
 
-## React Compiler
+Add a new object to the `guideSections` array in `src/elements/guideSections.ts`.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
+```ts
 {
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
+  id: 'new-chapter',
+  path: '/guide/new-chapter',
+  title: 'New Chapter',
+  description: 'Short description of the chapter.',
+  subsections: []
 }
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+The chapter should automatically appear in the chapter navigation and on the home page.
+
+## Adding a new subsection
+
+Add a new subsection inside the chapter's `subsections` array.
+
+```ts
+{
+  id: 'new-subsection',
+  title: 'New Subsection',
+  description: 'Short description of the subsection.',
+  keyPoints: [
+    'First key point.',
+    'Second key point.'
+  ],
+  examples: []
+}
+```
+
+The subsection should automatically appear on the guide page and in that page's table of contents.
+
+## Notes
+
+This project is intentionally simple. Most of the content is data-driven, so the guide can grow without adding a new React component for every new topic.
+
+When updating the guide, the safest place to start is usually `guideSections.ts`.
