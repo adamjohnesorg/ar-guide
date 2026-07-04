@@ -9,7 +9,7 @@ function HomePage() {
 
       <section id="guide" className=" bg-emerald-50">
         <div className="border-b border-black px-6 py-5">
-          <h1 className="text-2xl font-semibold leading-tight tracking-tight text-black md:text-4xl">
+          <h1 className="text-2xl font-semibold leading-tight tracking-tight text-black md:text-5xl">
             Chapters
           </h1>
         </div>

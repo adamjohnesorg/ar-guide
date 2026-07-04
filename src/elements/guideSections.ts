@@ -1,4 +1,7 @@
-export type GuideSection = {
+import { setupImageRibbon } from "./imageExports";
+import type { GuideImage } from '../elements/imageExports';
+
+type GuideSection = {
   id: string;
   path: string;
   title: string;
@@ -6,11 +9,12 @@ export type GuideSection = {
   subsections: GuideSubsection[];
 };
 
-export type GuideSubsection = {
+type GuideSubsection = {
   id: string;
   title: string;
   description: string;
   keyPoints: string[];
+  images: GuideImage[];
   examples: string[];
 };
 
@@ -19,39 +23,39 @@ export const guideSections: GuideSection[] = [
     id: 'page-setup',
     path: '/guide/page-setup',
     title: 'Page Setup',
-    description: 'Report-level layout and designer workspace settings for margins, snapping and other tools.',
+    description: 'Report-level layout and designer workspace settings for grids and rulers, snapping and other tools.',
     subsections: [
       {
         id: 'report-properties',
         title: 'Report Properties',
-        description: 'Use the report view to access properties that apply to the report itself.',
-        keyPoints: [
-          'Click blank space outside the report body to access report-level properties.',
-          'Use report properties for page-level configuration.',
-          'Confirm the selected element before changing properties.'
-        ],
+        description: 'Click blank space outside the report body to access report-level properties.',
+        keyPoints: [],
+        images: [],
         examples: []
       },
       {
-        id: 'margins-size-orientation',
-        title: 'Margins, Size, and Orientation',
-        description: 'Control the printed or rendered page area before arranging report content.',
+        id: 'report-orientation',
+        title: 'Rulers and Orientation',
+        description: 'Control the rendered page area before arranging report content. Rulers are directly responsible for handling report sizing. You can adjust the size of the report by sliding the ruler in its respective direction. The horizontal ruler can be slid left/right whereas the vertical ruler can be slid up/down. This has a direct effect on the orientation of the report display when previewing and printing the report.',
         keyPoints: [
-          'Set margins before final positioning.',
-          'Confirm page size before aligning report sections.',
+          'Set rulers before final positioning.',
           'Choose the correct orientation for the report output.'
+        ],
+        images: [
+          setupImageRibbon
         ],
         examples: []
       },
       {
         id: 'rulers-grid-snap',
-        title: 'Rulers, Grid, and Snap',
+        title: 'Grid and Snap',
         description: 'Use alignment tools to position report elements consistently.',
         keyPoints: [
           'Use the top and left rulers to adjust placement.',
           'Toggle ruler and snapping options from the designer controls.',
           'Use snap settings carefully when aligning dense report layouts.'
         ],
+        images: [],
         examples: []
       },
       {
@@ -63,7 +67,102 @@ export const guideSections: GuideSection[] = [
           'Elements can be clicked or dragged onto the report body.',
           'Each selected element exposes its own properties.'
         ],
+        images: [],
         examples: []
+      }
+    ]
+  },
+  {
+    id: 'sections',
+    path: '/guide/sections',
+    title: 'Sections',
+    description: 'Organization tools for grouping and controlling related report content.',
+    subsections: [
+      {
+        id: 'containers',
+        title: 'Containers',
+        description: 'Containers group related elements together inside a report.',
+        keyPoints: [
+          'Containers can help keep related elements together.',
+          'Visibility settings on a container affect elements inside it.',
+          'Use containers carefully because they can be harder to troubleshoot.'
+        ],
+        images: [],
+        examples: []
+      },
+      {
+        id: 'visibility',
+        title: 'Visibility and Suppression',
+        description: 'Visibility controls whether elements or groups of elements are rendered.',
+        keyPoints: [
+          'Hidden = False means the element is visible.',
+          'Hidden = True means the element is hidden.',
+          'Visibility expressions can show or hide content based on report data.'
+        ],
+        images: [],
+        examples: [
+          '{IIF(employeeID = 100, False, True)}'
+        ]
+      },
+      {
+        id: 'grouping',
+        title: 'Grouping',
+        description: 'Grouping organizes repeated content around a selected field or expression.',
+        keyPoints: [
+          'Groups can prevent duplicate displays of repeated values.',
+          'Group expressions determine how records are organized.',
+          'Grouping is useful when multiple rows belong to the same parent record.'
+        ],
+        images: [],
+        examples: [
+          'Group on CA_OBJECT_ID'
+        ]
+      }
+    ]
+  },
+    {
+    id: 'connections',
+    path: '/guide/connections',
+    title: 'Connections',
+    description: 'How the web designer connects to data sources and data sets.',
+    subsections: [
+      {
+        id: 'web-environment',
+        title: 'Web Environment Connection',
+        description: 'The web version uses the database associated with the current environment.',
+        keyPoints: [
+          'Manual server connection strings are usually not required in the web version.',
+          'The environment determines the active database connection.',
+          'Confirm the environment before testing report data.'
+        ],
+        images: [],
+        examples: []
+      },
+      {
+        id: 'manual-data-source',
+        title: 'Manual Data Source Setup',
+        description: 'Manual setup uses the Data panel to define connection fields when needed.',
+        keyPoints: [
+          'Use the Data icon on the right side of the designer.',
+          'Add a data source from the Data Sources tab.',
+          'Connection fields include name, provider, server, database, username, and password.'
+        ],
+        images: [],
+        examples: []
+      },
+      {
+        id: 'data-sets',
+        title: 'Data Sets',
+        description: 'Data sets define the SELECT statements and returned fields used by the report.',
+        keyPoints: [
+          'Click the plus icon beside a data source to add a query.',
+          'Enter the SELECT statement in the query field.',
+          'Returned fields appear under the Data Sets tab.'
+        ],
+        images: [],
+        examples: [
+          'SELECT * FROM TABLE_NAME WHERE ID = @parameterName'
+        ]
       }
     ]
   },
@@ -82,6 +181,7 @@ export const guideSections: GuideSection[] = [
           'Use Add to create a new parameter.',
           'Most common edits are Name, Prompt, and Data Type.'
         ],
+        images: [],
         examples: [
           'permitID',
           'caseID',
@@ -97,49 +197,44 @@ export const guideSections: GuideSection[] = [
           'Only change Available Values when the report requires it.',
           'Unnecessary edits can cause unexpected parameter behavior.'
         ],
+        images: [],
         examples: []
       }
     ]
   },
   {
-    id: 'connections',
-    path: '/guide/connections',
-    title: 'Connections',
-    description: 'How the web designer connects to data sources and data sets.',
+    id: 'expressions',
+    path: '/guide/expressions',
+    title: 'Expressions',
+    description: 'Report logic used for values, visibility, formatting, and calculated output.',
     subsections: [
       {
-        id: 'web-environment',
-        title: 'Web Environment Connection',
-        description: 'The web version uses the database associated with the current environment.',
+        id: 'expression-syntax',
+        title: 'Expression Syntax',
+        description: 'Expressions are wrapped in curly braces and can reference fields directly.',
         keyPoints: [
-          'Manual server connection strings are usually not required in the web version.',
-          'The environment determines the active database connection.',
-          'Confirm the environment before testing report data.'
+          'Wrap expressions in curly braces.',
+          'Use expressions for calculated values.',
+          'Use the expression editor from the small circle beside supported properties.'
         ],
-        examples: []
-      },
-      {
-        id: 'manual-data-source',
-        title: 'Manual Data Source Setup',
-        description: 'Manual setup uses the Data panel to define connection fields when needed.',
-        keyPoints: [
-          'Use the Data icon on the right side of the designer.',
-          'Add a data source from the Data Sources tab.',
-          'Connection fields include name, provider, server, database, username, and password.'
-        ],
-        examples: []
-      },
-      {
-        id: 'data-sets',
-        title: 'Data Sets',
-        description: 'Data sets define the SELECT statements and returned fields used by the report.',
-        keyPoints: [
-          'Click the plus icon beside a data source to add a query.',
-          'Enter the SELECT statement in the query field.',
-          'Returned fields appear under the Data Sets tab.'
-        ],
+        images: [],
         examples: [
-          'SELECT * FROM TABLE_NAME WHERE ID = @parameterName'
+          '{4 + 4}',
+          '{IIF(employeeID = 100, False, True)}'
+        ]
+      },
+      {
+        id: 'formatted-text',
+        title: 'Formatted Text',
+        description: 'Formatted Text boxes are used when HTML-style content is needed.',
+        keyPoints: [
+          'Use Formatted Text when embedding HTML tags.',
+          'Expressions can be placed inside formatted content.',
+          'This is useful for letters, notices, and paragraph-style report text.'
+        ],
+        images: [],
+        examples: [
+          '<strong>{IIf(TERMS = NULL, "NO DATA", TERMS)}</strong>'
         ]
       }
     ]
@@ -159,6 +254,7 @@ export const guideSections: GuideSection[] = [
           'Textboxes can also display expression results.',
           'Make the textbox large enough for the rendered value.'
         ],
+        images: [],
         examples: [
           '{employeeID}',
           '{4 + 4}'
@@ -173,6 +269,7 @@ export const guideSections: GuideSection[] = [
           'Do not wrap inner field names in a second set of braces.',
           'The same expression style can be used in other report elements.'
         ],
+        images: [],
         examples: [
           '{IIF(employeeID = 1883594, True, False)}'
         ]
@@ -194,6 +291,7 @@ export const guideSections: GuideSection[] = [
           'Cells inside the table are usually textbox elements.',
           'Use the table handle to edit the table itself.'
         ],
+        images: [],
         examples: []
       },
       {
@@ -205,6 +303,7 @@ export const guideSections: GuideSection[] = [
           'A table can contain multiple body rows.',
           'Headers and footers do not repeat the same way as body rows.'
         ],
+        images: [],
         examples: [
           '{employeeID}'
         ]
@@ -226,6 +325,7 @@ export const guideSections: GuideSection[] = [
           'Many report library subreports use .include in the report name.',
           'Subreport formatting can be sensitive to width and height settings.'
         ],
+        images: [],
         examples: []
       },
       {
@@ -237,88 +337,9 @@ export const guideSections: GuideSection[] = [
           'The subreport parameter must match the value it expects.',
           'This is commonly used for IDs shared between the main report and subreport.'
         ],
+        images: [],
         examples: [
           'employeeID passed from the main report into the subreport'
-        ]
-      }
-    ]
-  },
-  {
-    id: 'expressions',
-    path: '/guide/expressions',
-    title: 'Expressions',
-    description: 'Report logic used for values, visibility, formatting, and calculated output.',
-    subsections: [
-      {
-        id: 'expression-syntax',
-        title: 'Expression Syntax',
-        description: 'Expressions are wrapped in curly braces and can reference fields directly.',
-        keyPoints: [
-          'Wrap expressions in curly braces.',
-          'Use expressions for calculated values.',
-          'Use the expression editor from the small circle beside supported properties.'
-        ],
-        examples: [
-          '{4 + 4}',
-          '{IIF(employeeID = 100, False, True)}'
-        ]
-      },
-      {
-        id: 'formatted-text',
-        title: 'Formatted Text',
-        description: 'Formatted Text boxes are used when HTML-style content is needed.',
-        keyPoints: [
-          'Use Formatted Text when embedding HTML tags.',
-          'Expressions can be placed inside formatted content.',
-          'This is useful for letters, notices, and paragraph-style report text.'
-        ],
-        examples: [
-          '<strong>{IIf(TERMS = NULL, "NO DATA", TERMS)}</strong>'
-        ]
-      }
-    ]
-  },
-  {
-    id: 'sections',
-    path: '/guide/sections',
-    title: 'Sections',
-    description: 'Organization tools for grouping and controlling related report content.',
-    subsections: [
-      {
-        id: 'containers',
-        title: 'Containers',
-        description: 'Containers group related elements together inside a report.',
-        keyPoints: [
-          'Containers can help keep related elements together.',
-          'Visibility settings on a container affect elements inside it.',
-          'Use containers carefully because they can be harder to troubleshoot.'
-        ],
-        examples: []
-      },
-      {
-        id: 'visibility',
-        title: 'Visibility and Suppression',
-        description: 'Visibility controls whether elements or groups of elements are rendered.',
-        keyPoints: [
-          'Hidden = False means the element is visible.',
-          'Hidden = True means the element is hidden.',
-          'Visibility expressions can show or hide content based on report data.'
-        ],
-        examples: [
-          '{IIF(employeeID = 100, False, True)}'
-        ]
-      },
-      {
-        id: 'grouping',
-        title: 'Grouping',
-        description: 'Grouping organizes repeated content around a selected field or expression.',
-        keyPoints: [
-          'Groups can prevent duplicate displays of repeated values.',
-          'Group expressions determine how records are organized.',
-          'Grouping is useful when multiple rows belong to the same parent record.'
-        ],
-        examples: [
-          'Group on CA_OBJECT_ID'
         ]
       }
     ]

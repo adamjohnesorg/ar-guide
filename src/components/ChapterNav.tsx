@@ -3,7 +3,7 @@ import { guideSections } from '../elements/guideSections';
 
 function ChapterNav() {
   return (
-    <aside className=" bg-emerald-50 p-4 lg:sticky lg:top-6 lg:self-start">
+    <aside className=" bg-emerald-50 p-4 rounded-xl lg:sticky lg:top-6 lg:self-start">
       <nav className="mt-4 flex flex-col gap-2">
         {guideSections.map((section, index) => (
           <NavLink

@@ -12,6 +12,11 @@ function Header() {
             City of St. Louis
           </h1>
         </div>
+        <div>
+          <Link to="/" className="text-lg font-semibold text-white">
+            Home
+          </Link>
+        </div>
       </div>
     </header>
   );
