@@ -1,8 +1,4 @@
-export type GuideImage = {
-  src: string;
-  alt: string;
-  caption?: string;
-}
+import type { GuideImage } from "./types/GuideImage"
 
 export const setupImageRibbon: GuideImage = {
   src: '../public/images/page-setup/rulers.png',

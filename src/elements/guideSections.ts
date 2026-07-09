@@ -1,77 +1,8 @@
-import { setupImageRibbon } from "./imageExports";
-import type { GuideImage } from '../elements/imageExports';
-
-type GuideSection = {
-  id: string;
-  path: string;
-  title: string;
-  description: string;
-  subsections: GuideSubsection[];
-};
-
-type GuideSubsection = {
-  id: string;
-  title: string;
-  description: string;
-  keyPoints: string[];
-  images: GuideImage[];
-  examples: string[];
-};
+import { ChapterPageSetup } from "../../data/chapters/page-setup";
+import type { GuideSection } from "./types/GuideSection";
 
 export const guideSections: GuideSection[] = [
-  {
-    id: 'page-setup',
-    path: '/guide/page-setup',
-    title: 'Page Setup',
-    description: 'Report-level layout and designer workspace settings for grids and rulers, snapping and other tools.',
-    subsections: [
-      {
-        id: 'report-properties',
-        title: 'Report Properties',
-        description: 'Click blank space outside the report body to access report-level properties.',
-        keyPoints: [],
-        images: [],
-        examples: []
-      },
-      {
-        id: 'report-orientation',
-        title: 'Rulers and Orientation',
-        description: 'Control the rendered page area before arranging report content. Rulers are directly responsible for handling report sizing. You can adjust the size of the report by sliding the ruler in its respective direction. The horizontal ruler can be slid left/right whereas the vertical ruler can be slid up/down. This has a direct effect on the orientation of the report display when previewing and printing the report.',
-        keyPoints: [
-          'Set rulers before final positioning.',
-          'Choose the correct orientation for the report output.'
-        ],
-        images: [
-          setupImageRibbon
-        ],
-        examples: []
-      },
-      {
-        id: 'rulers-grid-snap',
-        title: 'Grid and Snap',
-        description: 'Use alignment tools to position report elements consistently.',
-        keyPoints: [
-          'Use the top and left rulers to adjust placement.',
-          'Toggle ruler and snapping options from the designer controls.',
-          'Use snap settings carefully when aligning dense report layouts.'
-        ],
-        images: [],
-        examples: []
-      },
-      {
-        id: 'ribbon-tools',
-        title: 'Ribbon Tools',
-        description: 'Use the designer ribbon to add report elements to the report body.',
-        keyPoints: [
-          'The ribbon contains the available report elements.',
-          'Elements can be clicked or dragged onto the report body.',
-          'Each selected element exposes its own properties.'
-        ],
-        images: [],
-        examples: []
-      }
-    ]
-  },
+  ChapterPageSetup,
   {
     id: 'sections',
     path: '/guide/sections',
@@ -343,5 +274,5 @@ export const guideSections: GuideSection[] = [
         ]
       }
     ]
-  }
+  },
 ];
