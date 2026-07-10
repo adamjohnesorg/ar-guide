@@ -1,12 +1,13 @@
-import { useState } from 'react';
-import { Link, useParams } from 'react-router';
+import { useEffect, useState } from 'react';
+import { Link, useLocation, useParams } from 'react-router';
 import ChapterNav from '../components/ChapterNav';
 import { guideSections } from '../elements/guideSections';
 import { tableOfContentSections } from '../elements/tableOfContents';
-import type { GuideImage } from '../elements/imageExports';
+import type { GuideImage } from '../elements/types/GuideImage';
 
 function GuidePage() {
   const [selectedImage, setSelectedImage] = useState<GuideImage | null>(null);
+  const location = useLocation();
   const { sectionId } = useParams();
   const section = guideSections.find((item) => item.id === sectionId);
   const tableOfContentSection = tableOfContentSections.find(
@@ -23,6 +24,23 @@ function GuidePage() {
       block: 'start'
     });
   };
+
+  useEffect(() => {
+    if (!location.hash) {
+      return;
+    }
+
+    const elementId = location.hash.replace('#', '');
+
+    const timeoutId = window.setTimeout(() => {
+      document.getElementById(elementId)?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }, 0);
+
+    return () => window.clearTimeout(timeoutId);
+  }, [location.hash, section?.id]);
 
   if (!section) {
     return (
