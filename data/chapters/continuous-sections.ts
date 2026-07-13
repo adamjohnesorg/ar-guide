@@ -4,7 +4,7 @@ import { continuousSectionImage } from "../../src/elements/imageExports/continuo
 
 const marginsLink = `<a href="/guide/page-setup#page-setup-margins" class="font-bold text-emerald-800 underline hover:text-black">Chapter 1: Margins</a>`;
 
-const visibilityLink = `<a href="/guide/visibility#visibility-hidden" class="font-bold text-emerald-800 underline hover:text-black">Chapter 5: Visibility</a>`;
+const visibilityLink = `<a href="/guide/visibility#visibility-hidden" class="font-bold text-emerald-800 underline hover:text-black">Chapter ?: Visibility</a>`;
 
 export const ChapterContinuousSections: GuideSection = {
   id: 'continuous-sections',
