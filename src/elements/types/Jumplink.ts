@@ -1,4 +1,4 @@
 export const marginsLink = `<a href="/guide/page-setup#page-setup-margins" class="font-bold text-emerald-800 underline hover:text-black">Chapter 1: Margins</a>`;
 export const parametersLink = `<a href="/guide/parameters#parameters" class="font-bold text-emerald-800 underline hover:text-black">Chapter 4: Parameters</a>`;
-export const expressionsLink = `<a href="/guide/expressions#expressions" class="font-bold text-emerald-800 underline hover:text-black">Chapter 5: Expressions</a>`;
+export const expressionsLink = `<a href="/guide/expressions#conditional-expressions" class="font-bold text-emerald-800 underline hover:text-black">Chapter 5: Expressions</a>`;
 export const tableLink = `<a href="/guide/tables#tables#" class="font-bold text-emerald-800 underline hover:text-black">Chapter 7: Tables</a>`;
