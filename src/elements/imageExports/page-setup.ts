@@ -11,3 +11,9 @@ export const gridAndSnapImage: GuideImage = {
   alt: 'Grid and snap symbols',
   caption: 'Grid and snap symbols'
 }
+
+export const footerExpressionsImage: GuideImage = {
+  src: '/images/page-setup/footer-expressions.png',
+  alt: 'List of common value expressions',
+  caption: 'List of common value expressions'
+}

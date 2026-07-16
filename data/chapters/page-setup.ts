@@ -1,4 +1,4 @@
-import { gridAndSnapImage, rulerImage } from "../../src/elements/imageExports/page-setup";
+import { gridAndSnapImage, rulerImage, footerExpressionsImage } from "../../src/elements/imageExports/page-setup";
 import type { GuideSection } from "../../src/elements/types/GuideSection";
 
 export const ChapterPageSetup: GuideSection = 
@@ -6,7 +6,7 @@ export const ChapterPageSetup: GuideSection =
     id: 'page-setup',
     path: '/guide/page-setup',
     title: 'Page Setup',
-    description: `Report-level configuration, metadata and section workspace settings for margins, grids and rulers, snapping and other tools.`,
+    description: `Report-level configuration, headers and footers, metadata and section workspace settings for margins, grids and rulers, snapping and other tools.`,
     subsections: [
       {
         id: 'report-properties',
@@ -37,6 +37,20 @@ export const ChapterPageSetup: GuideSection =
           `It is possible to zoom in/out of the report window by adjusting the zoom percentage found in the bottom right ribbon.`
         ],
         images: [],
+        examples: []
+      },
+      {
+        id: 'page-headers-footers',
+        title: 'Page Headers and Footers',
+        description: `Page headers and footers provide consistent areas for information that should appear at the top or bottom of each rendered page. They are separate from the main report body and do not repeat once per database record.
+
+        Page headers and footers can be added by selecting the appropriate section and navigating to the section ribbon at the top of the report window. In a report containing multiple sections, each section may have its own page header and footer configuration.
+
+        <strong>Subreports cannot be added to page headers or page footers.</strong>`,
+        keyPoints: [
+          `Use common value expressions found under the general data tab for quick and easy common expressions.`
+        ],
+        images: [footerExpressionsImage],
         examples: []
       },
       {
